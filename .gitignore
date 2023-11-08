@@ -1,0 +1,8 @@
+.vscode/*
+Isabelle/document/execution/*
+Isabelle/document/instruction/*
+Isabelle/document/prelim/*
+Isabelle/document/state/*
+Isabelle/document/state_manipulation/*
+Isabelle/output/*
+*~

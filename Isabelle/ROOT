@@ -1,0 +1,216 @@
+(*Copyright (C) 2023 Commonwealth of Australia
+  Micah Brown
+  Brendan Mahony
+  Jim McCarthy
+
+This file is part of Ironbark.
+
+This program is free software: you can redistribute it and/or modify it under the terms of 
+the GNU General Public License as published by the Free Software Foundation, either 
+version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
+PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.*)
+
+session Ironbark_prelim ("M.") in "Ironbark/prelim" = "HOL-Library" +
+  options [print_mode = "zed", document = pdf, document_output = "../../document/prelim", document_variants=prelim]
+  sessions
+    "HOL-Eisbach"
+    "HOL-Library"
+  theories
+    preliminaries
+  document_files
+    "root.tex"
+
+session Ironbark_state ("M.") in "Ironbark/state" = "Ironbark_prelim" +
+  options [print_mode = "zed", document = pdf, document_output = "../../document/state", document_variants=state]
+  sessions
+    "Ironbark_prelim"
+  theories
+    state_top
+  document_files
+    "root.tex"
+
+session Ironbark_state_manipulation ("M.") in "Ironbark/state_manipulation" = "Ironbark_state" +
+  options [print_mode = "zed", document = pdf, document_output = "../../document/state_manipulation", document_variants=state_manipulation]
+  sessions
+    "Ironbark_state"
+  theories
+    state_manipulation_top
+  document_files
+    "root.tex"
+
+session Ironbark_instruction ("M.") in "Ironbark/instruction" = "Ironbark_state_manipulation" +
+  options [print_mode = "zed", document = pdf, document_output = "../../document/instruction", document_variants=instruction]
+  sessions
+    "Ironbark_state_manipulation"
+  theories
+    instruction_top
+  document_files
+    "root.tex"
+
+session Ironbark_execution ("M.") in "Ironbark/execution" = "Ironbark_instruction" +
+  options [print_mode = "zed", document = pdf, document_output = "../../document/execution", document_variants=execution]
+  sessions
+    "Ironbark_instruction"
+  theories
+    execution_top
+  document_files
+    "root.tex"
+
+session Ironbark_processor ("M.") = "Ironbark_execution" +
+  options [print_mode = "zed", document = pdf, document_output = "output", document_variants=Ironbark]
+  sessions
+    "Ironbark_execution"
+  directories
+    "Ironbark"
+  theories
+    top_proof
+  document_files
+    "prelim/prelim/preliminaries.tex"
+
+    "state/state/state_implementations.tex"
+    "state/state/state_auxiliary.tex"
+    "state/state/register_sets.tex"
+    "state/state/state_top.tex"
+
+    "state_manipulation/state_manipulation/state_manipulation_implementations.tex"
+    "state_manipulation/state_manipulation/state_manipulation_auxiliary.tex"
+    "state_manipulation/state_manipulation/flag_decomposition.tex"
+    "state_manipulation/state_manipulation/register_decomposition.tex"
+    "state_manipulation/state_manipulation/memory_decomposition.tex"
+    "state_manipulation/state_manipulation/post_instruction_decomp.tex"
+    "state_manipulation/state_manipulation/state_manipulation_decomposition.tex"
+    "state_manipulation/state_manipulation/flag_simps.tex"
+    "state_manipulation/state_manipulation/register_simps.tex"
+    "state_manipulation/state_manipulation/memory_simps.tex"
+    "state_manipulation/state_manipulation/initial_state_simps.tex"
+    "state_manipulation/state_manipulation/standard_error_simps.tex"
+    "state_manipulation/state_manipulation/post_instruction_simps.tex"
+    "state_manipulation/state_manipulation/permission_sets.tex"
+    "state_manipulation/state_manipulation/special_simps.tex"
+    "state_manipulation/state_manipulation/state_manipulation_simps.tex"
+    "state_manipulation/state_manipulation/flag_reorder.tex"
+    "state_manipulation/state_manipulation/register_reorder.tex"
+    "state_manipulation/state_manipulation/memory_reorder.tex"
+    "state_manipulation/state_manipulation/state_manipulation_reorder.tex"
+    "state_manipulation/state_manipulation/state_manipulation_top.tex"
+
+    "instruction/instruction/instruction_implementations.tex"
+    "instruction/instruction/instruction_auxiliary.tex"
+    "instruction/instruction/ERROR_decomposition.tex"
+    "instruction/instruction/NOP_decomposition.tex"
+    "instruction/instruction/LOAD_IMMEDIATE_decomposition.tex"
+    "instruction/instruction/LOAD_STATIC_DATA_decomposition.tex"
+    "instruction/instruction/STORE_STATIC_DATA_decomposition.tex"
+    "instruction/instruction/LOAD_DYNAMIC_DATA_decomposition.tex"
+    "instruction/instruction/STORE_DYNAMIC_DATA_decomposition.tex"
+    "instruction/instruction/LOAD_INPUT_DATA_decomposition.tex"
+    "instruction/instruction/STORE_OUTPUT_DATA_decomposition.tex"
+    "instruction/instruction/COPY_decomposition.tex"
+    "instruction/instruction/ADD_decomposition.tex"
+    "instruction/instruction/SUBTRACT_decomposition.tex"
+    "instruction/instruction/SHIFT_LEFT_decomposition.tex"
+    "instruction/instruction/SHIFT_RIGHT_decomposition.tex"
+    "instruction/instruction/BITWISE_AND_decomposition.tex"
+    "instruction/instruction/BITWISE_OR_decomposition.tex"
+    "instruction/instruction/BITWISE_XOR_decomposition.tex"
+    "instruction/instruction/BITWISE_NAND_decomposition.tex"
+    "instruction/instruction/BITWISE_NOT_decomposition.tex"
+    "instruction/instruction/LESS_THAN_decomposition.tex"
+    "instruction/instruction/GREATER_THAN_decomposition.tex"
+    "instruction/instruction/EQUALS_decomposition.tex"
+    "instruction/instruction/NOT_EQUALS_decomposition.tex"
+    "instruction/instruction/RANDOMISE_decomposition.tex"
+    "instruction/instruction/END_JUMP_decomposition.tex"
+    "instruction/instruction/END_JUMP_STRICT_decomposition.tex"
+    "instruction/instruction/JUMP_decomposition.tex"
+    "instruction/instruction/CONDITIONAL_JUMP_decomposition.tex"
+    "instruction/instruction/END_CALL_decomposition.tex"
+    "instruction/instruction/CALL_decomposition.tex"
+    "instruction/instruction/END_RETURN_decomposition.tex"
+    "instruction/instruction/RETURN_decomposition.tex"
+    "instruction/instruction/HALT_decomposition.tex"
+    "instruction/instruction/ILLEGAL_decomposition.tex"
+    "instruction/instruction/ERROR_simps.tex"
+    "instruction/instruction/NOP_simps.tex"
+    "instruction/instruction/LOAD_IMMEDIATE_simps.tex"
+    "instruction/instruction/LOAD_STATIC_DATA_simps.tex"
+    "instruction/instruction/STORE_STATIC_DATA_simps.tex"
+    "instruction/instruction/LOAD_DYNAMIC_DATA_simps.tex"
+    "instruction/instruction/STORE_DYNAMIC_DATA_simps.tex"
+    "instruction/instruction/LOAD_INPUT_DATA_simps.tex"
+    "instruction/instruction/STORE_OUTPUT_DATA_simps.tex"
+    "instruction/instruction/COPY_simps.tex"
+    "instruction/instruction/ADD_simps.tex"
+    "instruction/instruction/SUBTRACT_simps.tex"
+    "instruction/instruction/SHIFT_LEFT_simps.tex"
+    "instruction/instruction/SHIFT_RIGHT_simps.tex"
+    "instruction/instruction/BITWISE_AND_simps.tex"
+    "instruction/instruction/BITWISE_OR_simps.tex"
+    "instruction/instruction/BITWISE_XOR_simps.tex"
+    "instruction/instruction/BITWISE_NAND_simps.tex"
+    "instruction/instruction/BITWISE_NOT_simps.tex"
+    "instruction/instruction/LESS_THAN_simps.tex"
+    "instruction/instruction/GREATER_THAN_simps.tex"
+    "instruction/instruction/EQUALS_simps.tex"
+    "instruction/instruction/NOT_EQUALS_simps.tex"
+    "instruction/instruction/RANDOMISE_simps.tex"
+    "instruction/instruction/END_JUMP_simps.tex"
+    "instruction/instruction/END_JUMP_STRICT_simps.tex"
+    "instruction/instruction/JUMP_simps.tex"
+    "instruction/instruction/CONDITIONAL_JUMP_simps.tex"
+    "instruction/instruction/END_CALL_simps.tex"
+    "instruction/instruction/CALL_simps.tex"
+    "instruction/instruction/END_RETURN_simps.tex"
+    "instruction/instruction/RETURN_simps.tex"
+    "instruction/instruction/HALT_simps.tex"
+    "instruction/instruction/ILLEGAL_simps.tex"
+    "instruction/instruction/ERROR_top.tex"
+    "instruction/instruction/NOP_top.tex"
+    "instruction/instruction/LOAD_IMMEDIATE_top.tex"
+    "instruction/instruction/LOAD_STATIC_DATA_top.tex"
+    "instruction/instruction/STORE_STATIC_DATA_top.tex"
+    "instruction/instruction/LOAD_DYNAMIC_DATA_top.tex"
+    "instruction/instruction/STORE_DYNAMIC_DATA_top.tex"
+    "instruction/instruction/LOAD_INPUT_DATA_top.tex"
+    "instruction/instruction/STORE_OUTPUT_DATA_top.tex"
+    "instruction/instruction/COPY_top.tex"
+    "instruction/instruction/ADD_top.tex"
+    "instruction/instruction/SUBTRACT_top.tex"
+    "instruction/instruction/SHIFT_LEFT_top.tex"
+    "instruction/instruction/SHIFT_RIGHT_top.tex"
+    "instruction/instruction/BITWISE_AND_top.tex"
+    "instruction/instruction/BITWISE_OR_top.tex"
+    "instruction/instruction/BITWISE_XOR_top.tex"
+    "instruction/instruction/BITWISE_NAND_top.tex"
+    "instruction/instruction/BITWISE_NOT_top.tex"
+    "instruction/instruction/LESS_THAN_top.tex"
+    "instruction/instruction/GREATER_THAN_top.tex"
+    "instruction/instruction/EQUALS_top.tex"
+    "instruction/instruction/NOT_EQUALS_top.tex"
+    "instruction/instruction/RANDOMISE_top.tex"
+    "instruction/instruction/END_JUMP_top.tex"
+    "instruction/instruction/END_JUMP_STRICT_top.tex"
+    "instruction/instruction/JUMP_top.tex"
+    "instruction/instruction/CONDITIONAL_JUMP_top.tex"
+    "instruction/instruction/END_CALL_top.tex"
+    "instruction/instruction/CALL_top.tex"
+    "instruction/instruction/END_RETURN_top.tex"
+    "instruction/instruction/RETURN_top.tex"
+    "instruction/instruction/HALT_top.tex"
+    "instruction/instruction/ILLEGAL_top.tex"
+    "instruction/instruction/instruction_top.tex"
+
+    "execution/execution/execution_implementations.tex"
+    "execution/execution/security_properties.tex"
+    "execution/execution/execution_auxiliary.tex"
+    "execution/execution/invariant_toolkit.tex"
+    "execution/execution/execution_top.tex"
+
+    "root.tex"
+    

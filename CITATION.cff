@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Brown"
+  given-names: "Micah"
+- family-names: "Mahony"
+  given-names: "Brendan"
+- family-names: "McCarthy"
+  given-names: "Jim"
+title: "Ironbark"
+license: GPL-3.0-or-later
+version: 1.0.0
+date-released: 2023-11-08
+url: "https://github.com/DSTCyber/Ironbark"
